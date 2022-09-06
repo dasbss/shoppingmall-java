@@ -1,0 +1,20 @@
+server:
+  port: 10000
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      server-addr: 43.142.24.86:8848
+    gateway:
+      routes:
+        - id: order-service
+          uri: lb://orderservice
+          predicates:
+            - Path=/order/**
+        - id: user-service
+          uri: lb://userservice
+          predicates:
+            - Path=/api/**
+      default-filters:
+        - AddRequestHeader=Truth, Itcast is freaking awesome!

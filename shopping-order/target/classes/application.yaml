@@ -1,0 +1,18 @@
+server:
+  port: 8889
+spring:
+  datasource:
+    url: jdbc:mysql://43.142.24.86/shppingmall?serverTimezone=UTC
+    username: root
+    password: Qq1011345430@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: orderservice
+  cloud:
+    nacos:
+      discovery:
+        cluster-name: HZ
+      server-addr: 43.142.24.86:8848
+orderservice:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule

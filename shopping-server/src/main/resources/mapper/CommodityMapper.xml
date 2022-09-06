@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lqm.mapper.CommodityMapper">
+
+    <resultMap id="BaseResultMap" type="com.lqm.domain.Commodity">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="commodity" column="commodity" jdbcType="VARCHAR"/>
+            <result property="info" column="info" jdbcType="VARCHAR"/>
+            <result property="colour" column="colour" jdbcType="VARCHAR"/>
+            <result property="num" column="num" jdbcType="INTEGER"/>
+            <result property="price" column="price" jdbcType="INTEGER"/>
+            <result property="picture" column="picture" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,commodity,info,
+        colour,num,price,
+        picture
+    </sql>
+    <select id="selectById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from commodity
+        where
+        id = #{id,jdbcType=NUMERIC}
+    </select>
+    <insert id="addAll">
+insert into commodity
+(id,commodity,info,
+colour,num,price,
+picture)
+values
+(
+#{id,jdbcType=NUMERIC},#{commodity,jdbcType=VARCHAR},#{info,jdbcType=VARCHAR},
+#{colour,jdbcType=VARCHAR},#{num,jdbcType=NUMERIC},#{price,jdbcType=NUMERIC},
+#{picture,jdbcType=VARCHAR}
+)
+
+</insert>
+    <delete id="deleteById">
+delete from commodity
+where
+id = #{id,jdbcType=NUMERIC}
+</delete>
+
+    <update id="updateAll">
+update commodity set
+commodity = #{commodity,jdbcType=VARCHAR},
+info = #{info,jdbcType=VARCHAR},
+colour= #{colour,jdbcType=VARCHAR},
+num= #{num,jdbcType=INTEGER},
+price= #{price,jdbcType=INTEGER},
+picture= #{picture,jdbcType=VARCHAR}
+where id = #{id,jdbcType=NUMERIC}
+</update>
+
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lqm.mapper.CommentMapper">
+
+    <resultMap id="BaseResultMap" type="com.lqm.domain.Comment">
+            <id property="cid" column="cid" jdbcType="INTEGER"/>
+            <result property="cusername" column="cusername" jdbcType="VARCHAR"/>
+            <result property="cinfo" column="cinfo" jdbcType="VARCHAR"/>
+            <result property="ctime" column="ctime" jdbcType="VARCHAR"/>
+            <result property="cgood" column="cgood" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        cid,cusername,cinfo,
+        ctime,cgood
+    </sql>
+    <insert id="addAll">
+insert into comment
+(cid,cusername,cinfo,
+ctime,cgood)
+values
+(
+#{cid,jdbcType=NUMERIC},#{cusername,jdbcType=VARCHAR},#{cinfo,jdbcType=VARCHAR},
+#{ctime,jdbcType=VARCHAR},#{cgood,jdbcType=NUMERIC}
+)
+
+</insert>
+    <select id="selectPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from comment
+    </select>
+    <select id="selectByCusername" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from comment
+        where
+        cusername = #{cusername,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByCid" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from comment
+        where
+        cid = #{cid,jdbcType=NUMERIC}
+    </select>
+    <delete id="deleteByCid">
+delete from comment
+where
+cid = #{cid,jdbcType=NUMERIC}
+</delete>
+</mapper>

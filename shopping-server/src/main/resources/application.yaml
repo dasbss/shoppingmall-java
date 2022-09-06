@@ -1,0 +1,15 @@
+server:
+  port: 8890
+spring:
+  datasource:
+    url: jdbc:mysql://43.142.24.86/shppingmall?serverTimezone=UTC
+    username: root
+    password: Qq1011345430@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: userservice
+  cloud:
+    nacos:
+      discovery:
+        cluster-name: GZ
+      server-addr: 43.142.24.86:8848

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lqm.mapper.ShoppingcartMapper">
+
+    <resultMap id="BaseResultMap" type="com.lqm.domain.Shoppingcart">
+            <id property="sid" column="sid" jdbcType="INTEGER"/>
+            <result property="spicture" column="spicture" jdbcType="VARCHAR"/>
+            <result property="sinfo" column="sinfo" jdbcType="VARCHAR"/>
+            <result property="sprice" column="sprice" jdbcType="INTEGER"/>
+            <result property="snum" column="snum" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        sid,spicture,sinfo,
+        sprice
+    </sql>
+    <insert id="addAll">
+insert into shoppingcart
+(sid,spicture,sinfo,
+sprice,snum)
+values
+(
+#{sid,jdbcType=NUMERIC},#{spicture,jdbcType=VARCHAR},#{sinfo,jdbcType=VARCHAR},
+#{sprice,jdbcType=NUMERIC},#{snum,jdbcType=NUMERIC}
+)
+
+</insert>
+    <delete id="deleteBySid">
+delete from shoppingcart
+where
+sid = #{sid,jdbcType=NUMERIC}
+</delete>
+
+</mapper>
